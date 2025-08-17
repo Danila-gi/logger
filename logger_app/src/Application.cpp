@@ -23,7 +23,8 @@ void Application::run(){
             console.input_message(message);
 
             std::thread th([=](){ 
-                if (sev >= 0 || sev <= 2)
+                std::cout << sev << std::endl;
+                if (sev >= 0 && sev <= 2)
                     logger->save_message(message, static_cast<Severity>(sev));
                 else
                     logger->save_message(message);
@@ -34,9 +35,15 @@ void Application::run(){
             console.print_info();
         }
         else if (command == 2){
-            return;
+            int sev;
+            console.print_severity_level();
+            console.input_severity_level(sev);
+            logger->set_default_level(static_cast<Severity>(sev));
         }
         else if (command == 3){
+            return;
+        }
+        else{
             console.print_unknown_command();
         }
         

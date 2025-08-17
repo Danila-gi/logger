@@ -4,7 +4,8 @@ void Console::print_info(){
     std::cout << "Commands:" << std::endl;
     std::cout << "0 - write message" << std::endl;
     std::cout << "1 - help" << std::endl;
-    std::cout << "2 - exit" << std::endl;
+    std::cout << "2 - change default level" << std::endl;
+    std::cout << "3 - exit" << std::endl;
 }
 
 void Console::print_unknown_command(){

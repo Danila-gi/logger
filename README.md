@@ -14,14 +14,22 @@
 
 Запуск скрипта со сборкой проекта
 
-```./run_sh -h # для динамической библиотеки```
-```./run_sh -t # для статистической библиотеки```
+```./run_sh -h # для динамической библиотеки
+./run_sh -t # для статистической библиотеки
+```
 
-Исполняемый файл logger для запуска после этого находится в директории build/logger_app/logger
+Исполняемый файл *logger* для запуска после этого находится в директории *build/logger_app/*
+```./logger```
 
 ### Исполняемая программа
 
 ```Usage
 
   ./logger
-  ./logger <file name> <default severity level(0: DEBUG, 1: ERROR, 2: EMERGENCY)>```
+  ./logger <file name> <default severity level(0: DEBUG, 1: ERROR, 2: EMERGENCY)>
+```
+
+### Тестирование
+
+Исполняемый файл *logger_test* с тестами находится в директории *build/logger_app/*
+```./logger_test```
