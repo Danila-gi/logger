@@ -1,11 +1,9 @@
 #include "Application.h"
 
-Application::Application(std::string file_name, Severity default_level){
-    logger = new Logger(file_name, default_level);
-}
+Application::Application(std::shared_ptr<Logger> logger): logger(logger){}
 
 void Application::run(){
-    if (!logger->is_file_open()){
+    if (!logger->is_good_connect()){
         console.print_file_error();
         return;
     }
@@ -28,8 +26,7 @@ void Application::run(){
             console.input_message(message);
 
             std::thread th([=](){ 
-                std::cout << sev << std::endl;
-                if (sev >= 0 && sev <= 2)
+                if (sev >= 0 && sev < static_cast<int>(Severity::COUNT))
                     logger->save_message(message, static_cast<Severity>(sev));
                 else
                     logger->save_message(message);
@@ -43,7 +40,9 @@ void Application::run(){
             int sev;
             console.print_severity_level();
             console.input_severity_level(sev);
-            logger->set_default_level(static_cast<Severity>(sev));
+            if (sev >= 0 && sev < static_cast<int>(Severity::COUNT)){
+                logger->set_default_level(static_cast<Severity>(sev));
+            }
         }
         else if (command == 3){
             return;
@@ -53,8 +52,4 @@ void Application::run(){
         }
         
     }
-}
-
-Application::~Application(){
-    delete logger;
 }

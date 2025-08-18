@@ -43,36 +43,3 @@ std::string Logger::severity_to_string(Severity level){
     }
     return result;
 }
-
-Logger::Logger(std::string file_name, Severity default_level):default_level(default_level){
-    file.open(file_name, std::ios::app);
-}
-
-void Logger::save_message(std::string message, Severity level){
-    if (file.is_open() && level >= default_level){
-        std::string severity_str = severity_to_string(level);
-        std::string curr_time = get_current_time();
-
-        std::unique_lock<std::mutex> guard(mtx);
-        file << message << " : " << severity_str
-             << " : [" << curr_time << "]" << std::endl;
-        guard.unlock();
-    }
-    if (file.fail()) {
-        std::cerr << "Failed to write to file!" << std::endl;
-        file.clear();
-    }
-}
-
-void Logger::save_message(std::string message){ this->save_message(message, default_level); }
-
-void Logger::set_default_level(Severity new_level){ default_level = new_level; }
-
-bool Logger::is_file_open(){
-    return file.is_open();
-}
-
-Logger::~Logger(){
-    if (file.is_open())
-        file.close();
-}

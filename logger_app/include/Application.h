@@ -2,21 +2,22 @@
 #define LOGGER_H
 
 #include <iostream>
+#include <memory>
 #include <thread>
 #include "Severity.h"
-#include "Logger.h"
+#include "LoggerFile.h"
+#include "LoggerSocket.h"
 #include "Console.h"
 
 /* Класс приложения */
 class Application {
-    Logger* logger; // объект подключенной библиотеки
+    std::shared_ptr<Logger> logger; // объект подключенной библиотеки
     Console console; // объект консоли для работы с вводом и выводом информации
     
 public:
-    Application(std::string file_name, Severity default_level);
+    Application(std::shared_ptr<Logger> logger);
 
     void run(); // метод запуска приложения
-    ~Application();
 };
 
 #endif

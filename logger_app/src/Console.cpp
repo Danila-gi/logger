@@ -39,5 +39,5 @@ void Console::input_command(int& command){
 }
 
 void Console::print_file_error(){
-    std::cerr << "Error with file opening!" << std::endl;
+    std::cerr << "Error with connect!" << std::endl;
 }

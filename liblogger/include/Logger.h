@@ -8,26 +8,20 @@
 #include <chrono>
 #include <sstream>
 
-/* Класс библиотеки для записи сообщений в журнал */
-class Logger {
-    std::fstream file; // файл, в который будет происходить запись
-    Severity default_level; // уровень важности по умолчанию
-
+/* Абстрактный класс библиотеки для записи сообщений в журнал */
+class Logger{
+protected:
     std::string get_current_time(); // функция подсчета времени записи сообщения
     std::string severity_to_string(Severity level); // функция перевода уровня важности в строковой тип
-    std::mutex mtx; // мьютекс для потокобезопасной записи сообщения
     
 public:
-    Logger(std::string file_name, Severity default_level);
+    virtual void save_message(std::string message, Severity level) = 0; // метод записи сообщения
+    
+    virtual void save_message(std::string message) = 0;
 
-    void save_message(std::string message, Severity level); // метод записи сообщения
-    void save_message(std::string message);
+    virtual void set_default_level(Severity new_level) = 0; // метод изменения уровня важности по умолчанию
 
-    void set_default_level(Severity new_level); // метод изменения уровня важности по умолчанию
-
-    bool is_file_open(); // метод проверки успешности открытия файла
-
-    ~Logger();
+    virtual bool is_good_connect() = 0; // метод проверки успешного соединения 
 };
 
 #endif

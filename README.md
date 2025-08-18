@@ -28,11 +28,18 @@
 ```
   Usage
 
-  ./logger
-  ./logger <file name> <default severity level(0: DEBUG, 1: ERROR, 2: EMERGENCY)>
+  ./logger # по умолчанию выбирается запись в текстовый файл
+  ./logger socket <default severity level(0: DEBUG, 1: ERROR, 2: EMERGENCY)> # выбор логирования через сокеты
+  ./logger <file name> <default severity level(0: DEBUG, 1: ERROR, 2: EMERGENCY)> # выбор логирвоания в конкретный файл
 ```
 
 При запуске приложения по умолчанию логи будут сохраняться в файл *build/logger_app/log.txt*, а уровень важности присвоится DEBUG.
+
+При запуске с сокетом необходимо перед использование запустить сервер, находящийся в директории *build/logger_app/*
+
+```./server```
+
+Чтобы завершить работу сервера, необходимо подать сообщение *STOP SERVER*.
 
 ### Тестирование
 

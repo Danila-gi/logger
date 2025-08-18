@@ -8,5 +8,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O2")
 
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 
-add_subdirectory(liblogger)
-add_subdirectory(logger_app)
+add_subdirectory(liblogger) # сборка библиотеки
+add_subdirectory(logger_app) # сборка приложения и юнит-тестов

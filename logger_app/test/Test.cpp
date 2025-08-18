@@ -20,7 +20,7 @@ int Test::count_lines(){
 void Test::test_library_count_messages(){
     std::ofstream {file_name};
 
-    Logger logger(file_name, Severity::ERROR);
+    LoggerFile logger(file_name, Severity::ERROR);
     logger.save_message("First message", Severity::ERROR);
     logger.save_message("Second message", Severity::EMERGENCY);
     logger.save_message("Third message", Severity::DEBUG);
@@ -32,7 +32,7 @@ void Test::test_library_count_messages(){
 void Test::test_library_set_level(){
     std::ofstream {file_name};
 
-    Logger logger(file_name, Severity::ERROR);
+    LoggerFile logger(file_name, Severity::ERROR);
     logger.save_message("First message", Severity::ERROR);
     logger.set_default_level(Severity::EMERGENCY);
     logger.save_message("Second message", Severity::ERROR);
@@ -54,7 +54,8 @@ void Test::test_application_console_input(){
 
     std::cin.rdbuf(test_input_stream.rdbuf());
 
-    Application app(file_name, Severity::DEBUG);
+    std::shared_ptr<Logger> logger = std::make_shared<LoggerFile>(file_name, Severity::DEBUG);
+    Application app(logger);
     app.run();
 
     std::cin.rdbuf(orig_cin_buf);
