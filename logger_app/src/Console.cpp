@@ -37,3 +37,7 @@ void Console::input_command(int& command){
     std::cin >> command;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
 }
+
+void Console::print_file_error(){
+    std::cerr << "Error with file opening!" << std::endl;
+}

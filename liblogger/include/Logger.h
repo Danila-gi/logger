@@ -25,6 +25,8 @@ public:
 
     void set_default_level(Severity new_level); // метод изменения уровня важности по умолчанию
 
+    bool is_file_open(); // метод проверки успешности открытия файла
+
     ~Logger();
 };
 

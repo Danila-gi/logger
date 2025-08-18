@@ -6,7 +6,7 @@ int main(){
     Test test("test_log.txt");
 
     test.run_tests();
-    std::cout << "All test passed!" << std::endl;
+    std::cout << "All tests passed!" << std::endl;
 
     return 0;
 }

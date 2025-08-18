@@ -5,6 +5,11 @@ Application::Application(std::string file_name, Severity default_level){
 }
 
 void Application::run(){
+    if (!logger->is_file_open()){
+        console.print_file_error();
+        return;
+    }
+
     console.print_info();
     bool flag = true;
     std::string message;

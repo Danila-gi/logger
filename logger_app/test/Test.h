@@ -10,7 +10,11 @@
 class Test {
     std::string file_name;
 
+    int count_lines();
+
     void test_library_count_messages();
+    void test_library_set_level();
+    void test_application_console_input();
 public:
     Test(std::string file_name);
     void run_tests();

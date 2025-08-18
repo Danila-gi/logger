@@ -46,9 +46,6 @@ std::string Logger::severity_to_string(Severity level){
 
 Logger::Logger(std::string file_name, Severity default_level):default_level(default_level){
     file.open(file_name, std::ios::app);
-    if (!file.is_open()) {
-        std::cerr << "Error with open log file!" << std::endl;
-    }
 }
 
 void Logger::save_message(std::string message, Severity level){
@@ -67,10 +64,12 @@ void Logger::save_message(std::string message, Severity level){
     }
 }
 
-void Logger::save_message(std::string message){this->save_message(message, default_level);}
+void Logger::save_message(std::string message){ this->save_message(message, default_level); }
 
-void Logger::set_default_level(Severity new_level){
-    default_level = new_level;
+void Logger::set_default_level(Severity new_level){ default_level = new_level; }
+
+bool Logger::is_file_open(){
+    return file.is_open();
 }
 
 Logger::~Logger(){

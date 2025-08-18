@@ -15,6 +15,7 @@ public:
     void input_message(std::string& message);
     void input_command(int& command);
     void print_command();
+    void print_file_error();
 };
 
 #endif
